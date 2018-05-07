@@ -23,7 +23,7 @@ export default class IdFixer {
     return Object.keys(records).reduce((newRecords, id) => {
       const record = records[id]
       const newId = query.model.id(record)
-      const newStringId = isNaN(newId) ? newId : newId.toString()
+      const newStringId = isNaN(newId) || !newId  ? newId : newId.toString()
 
       if (newId === undefined || id === newStringId) {
         newRecords[id] = record
